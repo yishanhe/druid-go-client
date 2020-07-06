@@ -1,14 +1,13 @@
 package extraction
 
-type ExtractionFn interface {
+type Extraction interface {
 	Type() string
 }
 
-type RegexExtractionFn struct {
+type RegexExtraction struct {
 	ExtractionType ExtractionType `json:"type"`
 }
 
-func (r RegexExtractionFn) Type() string {
+func (r RegexExtraction) Type() string {
 	return REGEX.name()
 }
-

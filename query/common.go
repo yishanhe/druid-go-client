@@ -1,4 +1,4 @@
-package components
+package query
 
 type Enum interface {
 	name() string
