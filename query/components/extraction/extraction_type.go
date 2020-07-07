@@ -7,10 +7,24 @@ type ExtractionType int
 const (
 	REGEX ExtractionType = iota
 	PARTIAL
+	SEARCH_QUERY
+	SUBSTRING
+	STRLEN
+	TIME_FORMAT
+	TIME
+	JAVASCRIPT
+	REGISTERED_LOOKUP
+	LOOKUP
+	CASCADE
+	STRING_FORMAT
+	UPPER
+	LOWER
+	BUCKET
 )
 
 var extractionTypeStrings = []string{
-	"regex", "partial",
+	"regex", "partial", "searchQuery", "substring", "strlen", "timeFormat", "time", "javascript", "registeredLookup", "lookup", "cascade", "stringFormat",
+	"upper", "lower", "bucket",
 }
 
 func (e ExtractionType) name() string {
