@@ -6,7 +6,7 @@ type ExtractionDimension struct {
 	DimensionType DimensionType         `json:"type"`
 	Dimension     string                `json:"dimension"`
 	OutputName    string                `json:"outputName"`
-	OutputType    OutputType            `json:"outputType,omitempty`
+	OutputType    OutputType            `json:"outputType,omitempty"`
 	ExtractionFn  extraction.Extraction `json:"extractionFn"`
 }
 
