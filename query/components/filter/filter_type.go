@@ -1,45 +1,42 @@
 package filter
 
-import "bytes"
+import "github.com/yishanhe/druid-go-client/pkg/enum"
 
 type FilterType int
 
 const (
-	SELECTOR FilterType = iota
-	COLUMN_COMPARISON
-	REGEX
-	AND
-	OR
-	NOT
-	JAVASCRIPT
-	EXTRACTION
-	SEARCH
-	IN
-	LIKE
-	BOUND
-	INTERVAL
-	TRUE
+	Selector FilterType = iota
+	ColumnComparison
+	Regex
+	And
+	Or
+	Not
+	Javascript
+	Extraction
+	Search
+	In
+	Like
+	Bound
+	Interval
+	True
 )
 
 var filterTypeStrings = []string{
 	"selector", "columnComparison", "regex", "and", "or", "not", "javascript", "extraction", "search", "in", "like", "bound", "interval", "true",
 }
 
-func (f FilterType) name() string {
+func (f FilterType) Name() string {
 	return filterTypeStrings[f]
 }
 
-func (f FilterType) ordinal() int {
+func (f FilterType) Ordinal() int {
 	return int(f)
 }
 
-func (f FilterType) values() *[]string {
+func (f FilterType) Values() *[]string {
 	return &filterTypeStrings
 }
 
 func (f FilterType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(f.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(f.Name())
 }

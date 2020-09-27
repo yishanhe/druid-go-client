@@ -10,6 +10,6 @@ type ExtractionDimension struct {
 	ExtractionFn  extraction.Extraction `json:"extractionFn"`
 }
 
-func (d *ExtractionDimension) Type() string {
-	return EXTRACTION.name()
+func (d ExtractionDimension) Type() string {
+	return Extraction.Name()
 }

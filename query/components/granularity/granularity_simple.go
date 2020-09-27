@@ -23,15 +23,15 @@ var simpleGranularityStrings = []string{
 	"all", "none", "second", "minute", "fifteen_minute", "thirty_minute", "hour", "day", "week", "month", "quarter", "year",
 }
 
-func (s SimpleGranularity) name() string {
+func (s SimpleGranularity) Name() string {
 	return simpleGranularityStrings[s]
 }
 
-func (s SimpleGranularity) ordinal() int {
+func (s SimpleGranularity) Ordinal() int {
 	return int(s)
 }
 
-func (s SimpleGranularity) values() *[]string {
+func (s SimpleGranularity) Values() *[]string {
 	return &simpleGranularityStrings
 }
 
@@ -41,7 +41,7 @@ func (s SimpleGranularity) Type() string {
 
 func (s SimpleGranularity) MarshalJSON() ([]byte, error) {
 	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(s.name())
+	buffer.WriteString(s.Name())
 	buffer.WriteString(`"`)
 	return buffer.Bytes(), nil
 }

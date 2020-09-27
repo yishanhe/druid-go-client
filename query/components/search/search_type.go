@@ -1,35 +1,34 @@
 package search
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type SearchType int
 
 const (
-	INSENSITIVE_CONTAINS SearchType = iota
-	FRAGMENT
-	CONTAINS
-	REGEX
+	InsensitiveContains SearchType = iota
+	Fragment
+	Contains
+	Regex
 )
 
 var searchTypeStrings = []string{
 	"insensitive_contains", "fragment", "contains", "regex",
 }
 
-func (s SearchType) name() string {
+func (s SearchType) Name() string {
 	return searchTypeStrings[s]
 }
 
-func (s SearchType) ordinal() int {
+func (s SearchType) Ordinal() int {
 	return int(s)
 }
 
-func (s SearchType) values() *[]string {
+func (s SearchType) Values() *[]string {
 	return &searchTypeStrings
 }
 
 func (s SearchType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(s.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(s.Name())
 }

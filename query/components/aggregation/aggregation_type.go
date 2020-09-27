@@ -1,36 +1,38 @@
 package aggregation
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type AggregationType int
 
 const (
-	COUNT AggregationType = iota
-	LONG_SUM
-	DOUBLE_SUM
-	FLOAT_SUM
-	DOUBLE_MIN
-	DOUBLE_MAX
-	FLOAT_MIN
-	FLOAT_MAX
-	LONG_MIN
-	LONG_MAX
-	DOUBLE_MEAN
-	DOUBLE_FIRST
-	DOUBLE_LAST
-	FLOAT_FIRST
-	FLOAT_LAST
-	LONG_FIRST
-	LONG_LAST
-	STRING_FIRST
-	STRING_LAST
-	DOUBLE_ANY
-	FLOAT_ANY
-	LONG_ANY
-	STRING_ANY
-	JAVASCRIPT
-	THETA_SKETCH
-	FILTERED
+	Count AggregationType = iota
+	LongSum
+	DoubleSum
+	FloatSum
+	DoubleMin
+	DoubleMax
+	FloatMin
+	FloatMax
+	LongMin
+	LongMax
+	DoubleMean
+	DoubleFirst
+	DoubleLast
+	FloatFirst
+	FloatLast
+	LongFirst
+	LongLast
+	StringFirst
+	StringLast
+	DoubleAny
+	FloatAny
+	LongAny
+	StringAny
+	Javascript
+	ThetaSketch
+	Filtered
 )
 
 var aggregationTypeStrings = []string{
@@ -39,22 +41,18 @@ var aggregationTypeStrings = []string{
 	"doubleAny", "floatAny", "longAny", "stringAny", "javascript", "thetaSketch", "filtered",
 }
 
-func (a AggregationType) name() string {
+func (a AggregationType) Name() string {
 	return aggregationTypeStrings[a]
 }
 
-func (a AggregationType) ordinal() int {
+func (a AggregationType) Ordinal() int {
 	return int(a)
 }
 
-func (a AggregationType) values() *[]string {
+func (a AggregationType) Values() *[]string {
 	return &aggregationTypeStrings
 }
 
 func (a AggregationType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(a.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(a.Name())
 }
-

@@ -21,7 +21,7 @@ func TestQueryDataSource(t *testing.T) {
 	var m DataSource
 	// var m models.QueryDataSource
 	m = &QueryDataSource{
-		DataSourceType: QUERY,
+		DataSourceType: Query,
 	}
 
 	jsonBytes, _ := json.Marshal(m)

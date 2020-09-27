@@ -1,36 +1,35 @@
 package datasource
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 // DataSourceType for druid query
 type DataSourceType int
 
 const (
-	TABLE DataSourceType = iota
-	QUERY
-	UNION
-	LOOKUP
+	Table DataSourceType = iota
+	Query
+	Union
+	Lookup
 )
 
 var datasourceTypeStrings = []string{
 	"table", "query", "union", "lookup",
 }
 
-func (d DataSourceType) name() string {
+func (d DataSourceType) Name() string {
 	return datasourceTypeStrings[d]
 }
 
-func (d DataSourceType) ordinal() int {
+func (d DataSourceType) Ordinal() int {
 	return int(d)
 }
 
-func (d DataSourceType) values() *[]string {
+func (d DataSourceType) Values() *[]string {
 	return &datasourceTypeStrings
 }
 
 func (d DataSourceType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(d.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(d.Name())
 }

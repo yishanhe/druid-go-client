@@ -19,7 +19,7 @@ type RegexExtraction struct {
 }
 
 func (r RegexExtraction) Type() string {
-	return REGEX.name()
+	return Regex.Name()
 }
 
 type PartialExtraction struct {
@@ -28,7 +28,7 @@ type PartialExtraction struct {
 }
 
 func (p PartialExtraction) Type() string {
-	return PARTIAL.name()
+	return Partial.Name()
 }
 
 type SearchQueryExtraction struct {
@@ -37,7 +37,7 @@ type SearchQueryExtraction struct {
 }
 
 func (s SearchQueryExtraction) Type() string {
-	return SEARCH_QUERY.name()
+	return SearchQuery.Name()
 }
 
 type SubstringExtraction struct {
@@ -47,7 +47,7 @@ type SubstringExtraction struct {
 }
 
 func (s SubstringExtraction) Type() string {
-	return SUBSTRING.name()
+	return Substring.Name()
 }
 
 type StrlenExtraction struct {
@@ -55,7 +55,7 @@ type StrlenExtraction struct {
 }
 
 func (s StrlenExtraction) Type() string {
-	return STRLEN.name()
+	return Strlen.Name()
 }
 
 type TimeFormatExtraction struct {
@@ -64,11 +64,11 @@ type TimeFormatExtraction struct {
 	TimeZone       string                  `json:"timeZone,omitempty"`
 	Locale         string                  `json:"locale,omitempty"`
 	Granularity    granularity.Granularity `json:"granularity,omitempty"`
-	AsMillis       bool                    `json:"asMillis"`
+	AsMillis       bool                    `json:"asMillis,omitempty"`
 }
 
 func (t TimeFormatExtraction) Type() string {
-	return TIME_FORMAT.name()
+	return TimeFormat.Name()
 }
 
 type TimeExtraction struct {
@@ -79,7 +79,7 @@ type TimeExtraction struct {
 }
 
 func (t TimeExtraction) Type() string {
-	return TIME.name()
+	return Time.Name()
 }
 
 type JavascriptExtraction struct {
@@ -89,7 +89,7 @@ type JavascriptExtraction struct {
 }
 
 func (j JavascriptExtraction) Type() string {
-	return JAVASCRIPT.name()
+	return Javascript.Name()
 }
 
 type RegisteredLookupExtraction struct {
@@ -99,7 +99,7 @@ type RegisteredLookupExtraction struct {
 }
 
 func (r RegisteredLookupExtraction) Type() string {
-	return REGISTERED_LOOKUP.name()
+	return RegisteredLookup.Name()
 }
 
 type LookupExtraction struct {
@@ -111,7 +111,7 @@ type LookupExtraction struct {
 }
 
 func (l LookupExtraction) Type() string {
-	return LOOKUP.name()
+	return Lookup.Name()
 }
 
 type CascadeExtraction struct {
@@ -120,7 +120,7 @@ type CascadeExtraction struct {
 }
 
 func (c CascadeExtraction) Type() string {
-	return CASCADE.name()
+	return Cascade.Name()
 }
 
 type StringFormatExtraction struct {
@@ -130,7 +130,7 @@ type StringFormatExtraction struct {
 }
 
 func (s StringFormatExtraction) Type() string {
-	return STRING_FORMAT.name()
+	return StringFormat.Name()
 }
 
 type UpperExtraction struct {
@@ -139,7 +139,7 @@ type UpperExtraction struct {
 }
 
 func (u UpperExtraction) Type() string {
-	return UPPER.name()
+	return Upper.Name()
 }
 
 type LowerExtraction struct {
@@ -148,7 +148,7 @@ type LowerExtraction struct {
 }
 
 func (l LowerExtraction) Type() string {
-	return LOWER.name()
+	return Lower.Name()
 }
 
 type BucketExtraction struct {
@@ -158,5 +158,5 @@ type BucketExtraction struct {
 }
 
 func (b BucketExtraction) Type() string {
-	return BUCKET.name()
+	return Bucket.Name()
 }

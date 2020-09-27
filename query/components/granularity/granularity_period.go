@@ -8,5 +8,5 @@ type PeriodGranularity struct {
 }
 
 func (p PeriodGranularity) Type() string {
-	return PERIOD.name()
+	return Period.Name()
 }

@@ -7,7 +7,7 @@ type DataSource interface {
 type SimpleDataSource string
 
 func (s SimpleDataSource) Type() string {
-	return TABLE.name()
+	return Table.Name()
 }
 
 type QueryDataSource struct {
@@ -15,7 +15,7 @@ type QueryDataSource struct {
 }
 
 func (m *QueryDataSource) Type() string {
-	return QUERY.name()
+	return Query.Name()
 }
 
 type TableDataSource struct {
@@ -24,7 +24,7 @@ type TableDataSource struct {
 }
 
 func (m *TableDataSource) Type() string {
-	return TABLE.name()
+	return Table.Name()
 }
 
 // UnionDataSource unions table data sources
@@ -34,7 +34,7 @@ type UnionDataSource struct {
 }
 
 func (m *UnionDataSource) Type() string {
-	return UNION.name()
+	return Union.Name()
 }
 
 type LookupDataSource struct {
@@ -43,5 +43,5 @@ type LookupDataSource struct {
 }
 
 func (m *LookupDataSource) Type() string {
-	return LOOKUP.name()
+	return Lookup.Name()
 }

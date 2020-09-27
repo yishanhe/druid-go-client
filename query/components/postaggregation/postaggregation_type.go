@@ -1,20 +1,22 @@
 package postaggregation
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type PostAggregationType int
 
 const (
-	ARITHMETIC PostAggregationType = iota
-	FIELD_ACCESS
-	FINALIZING_FIELD_ACCESS
-	CONSTANT
-	DOUBLE_GREATEST
-	LONG_GREATEST
-	DOUBLE_LEAST
-	LONG_LEAST
-	JAVASCRIPT
-	HYPER_UNIQUE_CARDINALITY
+	Arithmetic PostAggregationType = iota
+	FieldAccess
+	FinalizingFieldAccess
+	Constant
+	DoubleGreatest
+	LongGreatest
+	DoubleLeast
+	LongLeast
+	Javascript
+	HyperUniqueCardinality
 )
 
 var postAggregationTypeStrings = []string{
@@ -22,24 +24,18 @@ var postAggregationTypeStrings = []string{
 	"javascript", "hyperUniqueCardinality",
 }
 
-func (p PostAggregationType) name() string {
+func (p PostAggregationType) Name() string {
 	return postAggregationTypeStrings[p]
 }
 
-func (p PostAggregationType) ordinal() int {
+func (p PostAggregationType) Ordinal() int {
 	return int(p)
 }
 
-func (p PostAggregationType) values() *[]string {
+func (p PostAggregationType) Values() *[]string {
 	return &postAggregationTypeStrings
 }
 
 func (p PostAggregationType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(p.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(p.Name())
 }
-
-
-

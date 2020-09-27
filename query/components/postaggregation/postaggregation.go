@@ -6,58 +6,53 @@ type PostAggregator interface {
 
 type ArithmeticPostAggregation struct {
 	PostAggregationType PostAggregationType `json:"type"`
-	Name string `json:"name"`
-	Function string `json:"function"`
-	Fields PostAggregator `json:"fields"`
-	Ordering string `json:"ordering"`
+	Name                string              `json:"name"`
+	Function            string              `json:"function"`
+	Fields              PostAggregator      `json:"fields"`
+	Ordering            string              `json:"ordering"`
 }
 
 func (a ArithmeticPostAggregation) Type() string {
-	return ARITHMETIC.name()
+	return Arithmetic.Name()
 }
 
 // FieldAccessPostAggregation can be hyperUniqueCardinality, fieldAccess, finalizingFieldAccess
 type FieldAccessPostAggregation struct {
 	PostAggregationType PostAggregationType `json:"type"`
-	Name string `json:"name"`
-	FieldName string `json:"fieldName"`
+	Name                string              `json:"name"`
+	FieldName           string              `json:"fieldName"`
 }
 
 func (f FieldAccessPostAggregation) Type() string {
-	return f.PostAggregationType.name()
+	return f.PostAggregationType.Name()
 }
 
 type ConstantPostAggregation struct {
 	PostAggregationType PostAggregationType `json:"type"`
-	Name string `json:"name"`
-	Value string `json:"value"`
+	Name                string              `json:"name"`
+	Value               string              `json:"value"`
 }
 
 func (c ConstantPostAggregation) Type() string {
-	return CONSTANT.name()
+	return Constant.Name()
 }
 
 type GreatestPostAggregation struct {
 	PostAggregationType PostAggregationType `json:"type"`
-	Name string `json:"name"`
-	Fields PostAggregator `json:"fields"`
+	Name                string              `json:"name"`
+	Fields              PostAggregator      `json:"fields"`
 }
 
 func (g GreatestPostAggregation) Type() string {
-	return g.PostAggregationType.name()
+	return g.PostAggregationType.Name()
 }
 
 type LeastPostAggregation struct {
 	PostAggregationType PostAggregationType `json:"type"`
-	Name string `json:"name"`
-	Fields PostAggregator `json:"fields"`
+	Name                string              `json:"name"`
+	Fields              PostAggregator      `json:"fields"`
 }
 
 func (l LeastPostAggregation) Type() string {
-	return l.PostAggregationType.name()
+	return l.PostAggregationType.Name()
 }
-
-
-
-
-

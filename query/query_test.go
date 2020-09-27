@@ -12,7 +12,7 @@ import (
 
 func TestGroupByQuery(t *testing.T) {
 	query := &GroupByQuery{
-		QueryType:  GROUPBY,
+		QueryType:  GroupBy,
 		DataSource: datasource.SimpleDataSource("testDataSource"),
 		Dimensions: []dimension.Dimension{
 			dimension.SimpleDimension("abc"),

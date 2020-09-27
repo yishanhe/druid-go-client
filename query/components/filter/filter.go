@@ -3,6 +3,7 @@ package filter
 import (
 	"github.com/yishanhe/druid-go-client/query/components/dimension"
 	"github.com/yishanhe/druid-go-client/query/components/extraction"
+	"github.com/yishanhe/druid-go-client/query/components/search"
 	"github.com/yishanhe/druid-go-client/query/components/sorting"
 )
 
@@ -16,7 +17,7 @@ type ColumnComparisonFilter struct {
 }
 
 func (c ColumnComparisonFilter) Type() string {
-	return COLUMN_COMPARISON.name()
+	return ColumnComparison.Name()
 }
 
 type RegexFilter struct {
@@ -26,7 +27,7 @@ type RegexFilter struct {
 }
 
 func (r RegexFilter) Type() string {
-	return REGEX.name()
+	return Regex.Name()
 }
 
 type SelectorFilter struct {
@@ -37,7 +38,7 @@ type SelectorFilter struct {
 }
 
 func (s SelectorFilter) Type() string {
-	return SELECTOR.name()
+	return Selector.Name()
 }
 
 type AndFilter struct {
@@ -46,7 +47,7 @@ type AndFilter struct {
 }
 
 func (a AndFilter) Type() string {
-	return AND.name()
+	return And.Name()
 }
 
 type OrFilter struct {
@@ -55,7 +56,7 @@ type OrFilter struct {
 }
 
 func (o OrFilter) Type() string {
-	return OR.name()
+	return Or.Name()
 }
 
 type NotFilter struct {
@@ -64,7 +65,7 @@ type NotFilter struct {
 }
 
 func (n NotFilter) Type() string {
-	return NOT.name()
+	return Not.Name()
 }
 
 type JavaScriptFilter struct {
@@ -74,7 +75,7 @@ type JavaScriptFilter struct {
 }
 
 func (j JavaScriptFilter) Type() string {
-	return JAVASCRIPT.name()
+	return Javascript.Name()
 }
 
 type ExtractionFilter struct {
@@ -85,24 +86,24 @@ type ExtractionFilter struct {
 }
 
 func (e ExtractionFilter) Type() string {
-	return EXTRACTION.name()
+	return Extraction.Name()
 }
 
 type SearchFilter struct {
 	FilterType FilterType            `json:"type"`
 	Dimension  string                `json:"dimension"`
-	Query      SearchQuerySpec       `json:"query"`
+	Query      search.Search         `json:"query"`
 	Extraction extraction.Extraction `json:"extractionFn,omitempty"`
 }
 
-type SearchQuerySpec struct {
-	Type          string `json:"type"`
-	Value         string `json:"value"`
-	CaseSensitive bool   `json:"caseSensitive,omitempty"`
-}
+// type SearchQuerySpec struct {
+// 	Type          string `json:"type"`
+// 	Value         string `json:"value"`
+// 	CaseSensitive bool   `json:"caseSensitive,omitempty"`
+// }
 
 func (s SearchFilter) Type() string {
-	return SEARCH.name()
+	return Search.Name()
 }
 
 type InFilter struct {
@@ -112,7 +113,7 @@ type InFilter struct {
 }
 
 func (i InFilter) Type() string {
-	return IN.name()
+	return In.Name()
 }
 
 type LikeFilter struct {
@@ -124,7 +125,7 @@ type LikeFilter struct {
 }
 
 func (l LikeFilter) Type() string {
-	return LIKE.name()
+	return Like.Name()
 }
 
 type BoundFilter struct {
@@ -139,7 +140,7 @@ type BoundFilter struct {
 }
 
 func (b BoundFilter) Type() string {
-	return BOUND.name()
+	return Bound.Name()
 }
 
 type IntervalFilter struct {
@@ -150,7 +151,7 @@ type IntervalFilter struct {
 }
 
 func (i IntervalFilter) Type() string {
-	return INTERVAL.name()
+	return Interval.Name()
 }
 
 type TrueFilter struct {
@@ -158,5 +159,5 @@ type TrueFilter struct {
 }
 
 func (t TrueFilter) Type() string {
-	return TRUE.name()
+	return True.Name()
 }

@@ -1,36 +1,35 @@
 package sorting
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type SortingOrder int
 
 const (
-	LEXICOGRAPHIC SortingOrder = iota
-	ALPHA_NUMERIC
-	NUMERIC
-	STRLEN
-	VERSION
+	Lexicographic SortingOrder = iota
+	Alphanumeric
+	Numeric
+	Strlen
+	Version
 )
 
 var sortingOrderStrings = []string{
 	"lexicographic", "alphanumeric", "numeric", "strlen", "version",
 }
 
-func (s SortingOrder) name() string {
+func (s SortingOrder) Name() string {
 	return sortingOrderStrings[s]
 }
 
-func (s SortingOrder) ordinal() int {
+func (s SortingOrder) Ordinal() int {
 	return int(s)
 }
 
-func (s SortingOrder) values() *[]string {
+func (s SortingOrder) Values() *[]string {
 	return &sortingOrderStrings
 }
 
 func (s SortingOrder) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(s.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(s.Name())
 }

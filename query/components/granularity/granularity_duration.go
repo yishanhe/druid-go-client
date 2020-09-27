@@ -7,5 +7,5 @@ type DurationGranularity struct {
 }
 
 func (d DurationGranularity) Type() string {
-	return DURATION.name()
+	return Duration.Name()
 }

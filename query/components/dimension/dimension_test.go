@@ -6,12 +6,13 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/yishanhe/druid-go-client/query/components/lookup"
 )
 
-func TestDefaultDimension(t *testing.T) {
+func TestDefaultDimensionSerialization(t *testing.T) {
 	var dimSpec Dimension
 	dimSpec = &DefaultDimension{
-		DimensionType: DEFAULT,
+		DimensionType: Default,
 		Dimension:     "field1",
 		OutputName:    "field1Out",
 	}
@@ -24,13 +25,13 @@ func TestDefaultDimension(t *testing.T) {
 	require.JSONEq(t, expected, string(jsonBytes))
 }
 
-func TestDefaultDimensionOutputType(t *testing.T) {
+func TestDefaultDimensionOutputTypeSerialization(t *testing.T) {
 	var dimSpec Dimension
 	dimSpec = &DefaultDimension{
-		DimensionType: REGEX_FILTERED,
+		DimensionType: RegexFiltered,
 		Dimension:     "field1",
 		OutputName:    "field1Out",
-		OutputType:    LONG,
+		OutputType:    Long,
 	}
 	expected := `{
 		"type": "regexFiltered",
@@ -42,5 +43,35 @@ func TestDefaultDimensionOutputType(t *testing.T) {
 	if err != nil {
 		assert.Fail(t, "Failed")
 	}
+	require.JSONEq(t, expected, string(jsonBytes))
+}
+
+func TestLookupDimensionSerialization(t *testing.T) {
+	dim := &LookupDimension{
+		DimensionType:           Lookup,
+		Dimension:               "dimensionName",
+		OutputName:              "dimensionOutputName",
+		ReplaceMissingValueWith: "missing_value",
+		RetainMissingValue:      true,
+		Lookup: &lookup.MapLookup{
+			LookupType: lookup.Map,
+			Map: map[string]string{
+				"key": "value",
+			},
+			IsOneToOne: true,
+		},
+	}
+	jsonBytes, err := json.Marshal(dim)
+	if err != nil {
+		assert.Fail(t, "Serialization Failed")
+	}
+	expected := `{
+		"type":"lookup",
+		"dimension":"dimensionName",
+		"outputName":"dimensionOutputName",
+		"replaceMissingValueWith":"missing_value",
+		"retainMissingValue":true,
+		"lookup":{"type": "map", "map":{"key":"value"}, "isOneToOne":true}
+	  }`
 	require.JSONEq(t, expected, string(jsonBytes))
 }

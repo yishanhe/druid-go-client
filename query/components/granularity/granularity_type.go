@@ -1,31 +1,30 @@
 package granularity
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type GranularityType int
 
 const (
-	DURATION GranularityType = iota
-	PERIOD
+	Duration GranularityType = iota
+	Period
 )
 
 var granularityTypeStrings = []string{"duration", "period"}
 
-func (g GranularityType) name() string {
+func (g GranularityType) Name() string {
 	return granularityTypeStrings[g]
 }
 
-func (g GranularityType) ordinal() int {
+func (g GranularityType) Ordinal() int {
 	return int(g)
 }
 
-func (g GranularityType) values() *[]string {
+func (g GranularityType) Values() *[]string {
 	return &granularityTypeStrings
 }
 
 func (g GranularityType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(g.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(g.Name())
 }

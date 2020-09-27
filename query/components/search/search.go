@@ -10,7 +10,7 @@ type InsensitiveContainsSearch struct {
 }
 
 func (i InsensitiveContainsSearch) Type() string {
-	return INSENSITIVE_CONTAINS.name()
+	return InsensitiveContains.Name()
 }
 
 type FragmentSearch struct {
@@ -20,7 +20,7 @@ type FragmentSearch struct {
 }
 
 func (f FragmentSearch) Type() string {
-	return FRAGMENT.name()
+	return Fragment.Name()
 }
 
 type ContainsSearch struct {
@@ -30,7 +30,7 @@ type ContainsSearch struct {
 }
 
 func (c ContainsSearch) Type() string {
-	return CONTAINS.name()
+	return Contains.Name()
 }
 
 type RegexSearch struct {
@@ -39,5 +39,5 @@ type RegexSearch struct {
 }
 
 func (r RegexSearch) Type() string {
-	return REGEX.name()
+	return Regex.Name()
 }

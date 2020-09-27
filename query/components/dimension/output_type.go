@@ -1,34 +1,33 @@
 package dimension
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type OutputType int
 
 const (
-	STRING OutputType = iota
-	LONG
-	FLOAT
+	String OutputType = iota
+	Long
+	Float
 )
 
 var outputTypeStrings = []string{
 	"STRING", "LONG", "FLOAT",
 }
 
-func (o OutputType) name() string {
+func (o OutputType) Name() string {
 	return outputTypeStrings[o]
 }
 
-func (o OutputType) ordinal() int {
+func (o OutputType) Ordinal() int {
 	return int(o)
 }
 
-func (o OutputType) values() *[]string {
+func (o OutputType) Values() *[]string {
 	return &outputTypeStrings
 }
 
 func (o OutputType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(o.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(o.Name())
 }

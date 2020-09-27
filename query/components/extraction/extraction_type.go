@@ -1,25 +1,27 @@
 package extraction
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type ExtractionType int
 
 const (
-	REGEX ExtractionType = iota
-	PARTIAL
-	SEARCH_QUERY
-	SUBSTRING
-	STRLEN
-	TIME_FORMAT
-	TIME
-	JAVASCRIPT
-	REGISTERED_LOOKUP
-	LOOKUP
-	CASCADE
-	STRING_FORMAT
-	UPPER
-	LOWER
-	BUCKET
+	Regex ExtractionType = iota
+	Partial
+	SearchQuery
+	Substring
+	Strlen
+	TimeFormat
+	Time
+	Javascript
+	RegisteredLookup
+	Lookup
+	Cascade
+	StringFormat
+	Upper
+	Lower
+	Bucket
 )
 
 var extractionTypeStrings = []string{
@@ -27,21 +29,18 @@ var extractionTypeStrings = []string{
 	"upper", "lower", "bucket",
 }
 
-func (e ExtractionType) name() string {
+func (e ExtractionType) Name() string {
 	return extractionTypeStrings[e]
 }
 
-func (e ExtractionType) ordinal() int {
+func (e ExtractionType) Ordinal() int {
 	return int(e)
 }
 
-func (e ExtractionType) values() *[]string {
+func (e ExtractionType) Values() *[]string {
 	return &extractionTypeStrings
 }
 
 func (e ExtractionType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(e.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON((e.Name()))
 }

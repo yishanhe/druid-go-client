@@ -11,5 +11,5 @@ type MapLookup struct {
 }
 
 func (m MapLookup) Type() string {
-	return MAP.name()
+	return Map.Name()
 }

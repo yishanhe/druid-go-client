@@ -39,7 +39,7 @@ type GroupByQuery struct {
 }
 
 func (g GroupByQuery) Type() string {
-	return GROUPBY.name()
+	return GroupBy.Name()
 }
 
 type GroupByResult struct {
@@ -59,7 +59,7 @@ type ScanQuery struct {
 }
 
 func (s ScanQuery) Type() string {
-	return SCAN.name()
+	return Scan.Name()
 }
 
 type ScanQueryResult struct {

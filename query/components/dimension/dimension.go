@@ -17,6 +17,6 @@ type DefaultDimension struct {
 	OutputType    OutputType    `json:"outputType,omitempty"`
 }
 
-func (d *DefaultDimension) Type() string {
-	return DEFAULT.name()
+func (d DefaultDimension) Type() string {
+	return Default.Name()
 }

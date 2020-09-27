@@ -1,14 +1,14 @@
 package dimension
 
-type ListFilteredDimensionSpec struct {
+type ListFilteredDimension struct {
 	DimensionType DimensionType `json:"type"`
 	Delegate      Dimension     `json:"delegate"`
 	Values        []string      `json:"values"`
 	WhiteListed   bool          `json:"isWhitelist,omitempty"`
 }
 
-func (l ListFilteredDimensionSpec) Type() string {
-	return LIST_FILTERED.name()
+func (l ListFilteredDimension) Type() string {
+	return ListFiltered.Name()
 }
 
 type RegexFilteredDimension struct {
@@ -18,7 +18,7 @@ type RegexFilteredDimension struct {
 }
 
 func (r RegexFilteredDimension) Type() string {
-	return REGEX_FILTERED.name()
+	return RegexFiltered.Name()
 }
 
 type PrefixFilteredDimension struct {
@@ -28,5 +28,5 @@ type PrefixFilteredDimension struct {
 }
 
 func (p PrefixFilteredDimension) Type() string {
-	return PREFIX_FILTERED.name()
+	return PrefixFiltered.Name()
 }

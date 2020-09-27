@@ -1,32 +1,30 @@
 package query
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type ResultFormat int
 
 const (
-	LIST ResultFormat = iota
-	COMPACTED_LIST
+	List ResultFormat = iota
+	CompactedList
 )
 
 var resultFormatStrings = []string{"list", "compactedList"}
 
-func (r ResultFormat) name() string {
+func (r ResultFormat) Name() string {
 	return resultFormatStrings[r]
 }
 
-func (r ResultFormat) ordinal() int {
+func (r ResultFormat) Ordinal() int {
 	return int(r)
 }
 
-func (r ResultFormat) values() *[]string {
+func (r ResultFormat) Values() *[]string {
 	return &resultFormatStrings
 }
 
 func (r ResultFormat) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(r.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
-
+	return enum.MarshalEnumJSON(r.Name())
 }

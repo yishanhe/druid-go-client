@@ -1,36 +1,35 @@
 package dimension
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 // DimensionType for druid query
 type DimensionType int
 
 const (
-	DEFAULT DimensionType = iota
-	EXTRACTION
-	LOOKUP
-	LIST_FILTERED
-	REGEX_FILTERED
-	PREFIX_FILTERED
+	Default DimensionType = iota
+	Extraction
+	Lookup
+	ListFiltered
+	RegexFiltered
+	PrefixFiltered
 )
 
 var dimensionTypeStrings = []string{"default", "extraction", "lookup", "listFiltered", "regexFiltered", "prefixFiltered"}
 
-func (d DimensionType) name() string {
+func (d DimensionType) Name() string {
 	return dimensionTypeStrings[d]
 }
 
-func (d DimensionType) ordinal() int {
+func (d DimensionType) Ordinal() int {
 	return int(d)
 }
 
-func (d DimensionType) values() *[]string {
+func (d DimensionType) Values() *[]string {
 	return &dimensionTypeStrings
 }
 
 func (d DimensionType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(d.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(d.Name())
 }

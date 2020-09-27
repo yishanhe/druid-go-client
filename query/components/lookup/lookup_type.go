@@ -1,30 +1,29 @@
 package lookup
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type LookupType int
 
 const (
-	MAP LookupType = iota
+	Map LookupType = iota
 )
 
 var lookupTypeStrings = []string{"map"}
 
-func (l LookupType) name() string {
+func (l LookupType) Name() string {
 	return lookupTypeStrings[l]
 }
 
-func (l LookupType) ordinal() int {
+func (l LookupType) Ordinal() int {
 	return int(l)
 }
 
-func (l LookupType) values() *[]string {
+func (l LookupType) Values() *[]string {
 	return &lookupTypeStrings
 }
 
 func (l LookupType) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(l.name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(l.Name())
 }
