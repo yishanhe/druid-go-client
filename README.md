@@ -1,5 +1,6 @@
 # druid-go-client
 
+[![Build status](https://github.com/yishanhe/druid-go-client/workflows/Go/badge.svg)](https://github.com/yishanhe/druid-go-client/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yishanhe/druid-go-client)](https://goreportcard.com/report/github.com/yishanhe/druid-go-client)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
