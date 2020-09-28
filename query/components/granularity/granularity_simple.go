@@ -1,6 +1,8 @@
 package granularity
 
-import "bytes"
+import (
+	"github.com/yishanhe/druid-go-client/pkg/enum"
+)
 
 type SimpleGranularity int
 
@@ -40,8 +42,5 @@ func (s SimpleGranularity) Type() string {
 }
 
 func (s SimpleGranularity) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(s.Name())
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
+	return enum.MarshalEnumJSON(s.Name())
 }

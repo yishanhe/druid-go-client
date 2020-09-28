@@ -11,7 +11,7 @@ func TestJavascriptAggregatorSerialization(t *testing.T) {
 	aggregator := &JavascriptAggregation{
 		AggregationType: Javascript,
 		Name:            "sum(log(x)*y) + 10",
-		FieldNames:       []string{"x", "y"},
+		FieldNames:      []string{"x", "y"},
 		AggregationFn:   "function(current, a, b)      { return current + (Math.log(a) * b); }",
 		CombineFn:       "function(partialA, partialB) { return partialA + partialB; }",
 		ResetFn:         "function()                   { return 10; }",
@@ -31,13 +31,13 @@ func TestJavascriptAggregatorSerialization(t *testing.T) {
 func TestFilteredAggregationSerialization(t *testing.T) {
 	aggregator := &FilteredAggregation{
 		AggregationType: Filtered,
-		Aggregator:      &Aggregation{
+		Aggregator: &Aggregation{
 			AggregationType: StringLast,
 			Name:            "last_x",
 			FieldName:       "x",
 			MaxStringBytes:  1024,
 		},
-		Filter:        &filter.SelectorFilter{
+		Filter: &filter.SelectorFilter{
 			FilterType: filter.Selector,
 			Dimension:  "x",
 			Value:      "xx",
@@ -60,4 +60,3 @@ func TestFilteredAggregationSerialization(t *testing.T) {
 	}`
 	require.JSONEq(t, expected, string(jsonBytes))
 }
-

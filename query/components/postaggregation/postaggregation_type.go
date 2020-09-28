@@ -20,7 +20,7 @@ const (
 )
 
 var postAggregationTypeStrings = []string{
-	"arithmetic", "fieldAcess", "finalizingFieldAccess", "constant", "doubleGreatest", "longGreatest", "doubleLeast", "longLeast",
+	"arithmetic", "fieldAccess", "finalizingFieldAccess", "constant", "doubleGreatest", "longGreatest", "doubleLeast", "longLeast",
 	"javascript", "hyperUniqueCardinality",
 }
 

@@ -31,7 +31,7 @@ func (f FilteredAggregation) Type() string {
 type JavascriptAggregation struct {
 	AggregationType AggregationType `json:"type"`
 	Name            string          `json:"name"`
-	FieldNames       []string         `json:"fieldNames"`
+	FieldNames      []string        `json:"fieldNames"`
 	AggregationFn   string          `json:"fnAggregate"`
 	CombineFn       string          `json:"fnCombine"`
 	ResetFn         string          `json:"fnReset"`
@@ -40,4 +40,3 @@ type JavascriptAggregation struct {
 func (j JavascriptAggregation) Type() string {
 	return Javascript.Name()
 }
-
