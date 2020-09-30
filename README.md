@@ -10,10 +10,10 @@
 ## TODO
 
 - [ ] more query components
-  - [ ] sorting   
-  - [ ] limit
+  - [x] sorting   
+  - [x] limit
   - [ ] virtual columns
-  - [ ] having
+  - [x] having
 - [ ] more query types
   - [ ] timeseries
   - [ ] topn
@@ -24,5 +24,3 @@
 - [ ] constructor methods to set type and default values
 
 and more.
-
-
