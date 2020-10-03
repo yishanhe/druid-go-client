@@ -2,6 +2,7 @@ package dimension
 
 import (
 	"encoding/json"
+	"github.com/yishanhe/druid-go-client/query/components/common"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -31,7 +32,7 @@ func TestDefaultDimensionOutputTypeSerialization(t *testing.T) {
 		DimensionType: RegexFiltered,
 		Dimension:     "field1",
 		OutputName:    "field1Out",
-		OutputType:    Long,
+		OutputType:    common.Long,
 	}
 	expected := `{
 		"type": "regexFiltered",

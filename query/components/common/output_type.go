@@ -1,4 +1,4 @@
-package dimension
+package common
 
 import (
 	"github.com/yishanhe/druid-go-client/pkg/enum"

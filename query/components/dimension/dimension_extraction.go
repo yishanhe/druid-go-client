@@ -1,12 +1,15 @@
 package dimension
 
-import "github.com/yishanhe/druid-go-client/query/components/extraction"
+import (
+	"github.com/yishanhe/druid-go-client/query/components/common"
+	"github.com/yishanhe/druid-go-client/query/components/extraction"
+)
 
 type ExtractionDimension struct {
 	DimensionType DimensionType         `json:"type"`
 	Dimension     string                `json:"dimension"`
 	OutputName    string                `json:"outputName"`
-	OutputType    OutputType            `json:"outputType,omitempty"`
+	OutputType    common.OutputType     `json:"outputType,omitempty"`
 	ExtractionFn  extraction.Extraction `json:"extractionFn"`
 }
 
