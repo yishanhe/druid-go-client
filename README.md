@@ -9,14 +9,14 @@ The interfaces are not stable yet. Please don't use it in production.
 
 ## TODO
 
-- [ ] more query components
+- [x] more query components
   - [x] sorting   
   - [x] limit
-  - [ ] virtual columns
+  - [x] virtual columns
   - [x] having
 - [ ] more query types
-  - [ ] timeseries
-  - [ ] topn
+  - [x] timeseries
+  - [x] topn
   - [ ] search
   - [ ] timeboundary
   - [ ] segmentmetadata

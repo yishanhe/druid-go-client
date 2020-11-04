@@ -6,6 +6,9 @@ import (
 	"github.com/yishanhe/druid-go-client/query/components/dimension"
 	"github.com/yishanhe/druid-go-client/query/components/filter"
 	"github.com/yishanhe/druid-go-client/query/components/granularity"
+	"github.com/yishanhe/druid-go-client/query/components/having"
+	"github.com/yishanhe/druid-go-client/query/components/limit"
+	"github.com/yishanhe/druid-go-client/query/components/metric"
 	"github.com/yishanhe/druid-go-client/query/components/postaggregation"
 )
 
@@ -16,25 +19,57 @@ type Query interface {
 type TimeseriesQuery struct {
 	QueryType        QueryType                        `json:"queryType"`
 	DataSource       datasource.DataSource            `json:"dataSource"`
-	Granularity      granularity.Granularity          `json:"granularity"`
+	Descending       bool                             `json:"descending,omitempty"`
 	Intervals        []string                         `json:"intervals"`
+	Granularity      granularity.Granularity          `json:"granularity"`
 	Filter           filter.Filter                    `json:"filter,omitempty"`
 	Aggregations     []aggregation.Aggregator         `json:"aggregations,omitempty"`
 	PostAggregations []postaggregation.PostAggregator `json:"postAggregations,omitempty"`
-	Context          map[string]interface{}           `json:"context,omitempty"`
 	Limit            int64                            `json:"limit,omitempty"`
-	Descending       bool                             `json:"descending,omitempty"`
+	Context          map[string]interface{}           `json:"context,omitempty"`
 }
+
+func (t TimeseriesQuery) Type() string {
+	return TimeSeries.Name()
+}
+
+type TimeseriesQueryResult struct {
+	Timestamp string                 `json:"timestamp"`
+	Result    map[string]interface{} `json:"result"`
+}
+
+type TopNQuery struct {
+	QueryType        QueryType                        `json:"queryType"`
+	DataSource       datasource.DataSource            `json:"dataSource"`
+	Intervals        []string                         `json:"intervals"`
+	Granularity      granularity.Granularity          `json:"granularity"`
+	Filter           filter.Filter                    `json:"filter,omitempty"`
+	Aggregations     []aggregation.Aggregator         `json:"aggregations,omitempty"`
+	PostAggregations []postaggregation.PostAggregator `json:"postAggregations,omitempty"`
+	Dimensions       []dimension.Dimension            `json:"dimensions"`
+	Threshold        int64                            `json:"threshold"`
+	Metric           metric.Metric                    `json:"metric"`
+	Context          map[string]interface{}           `json:"context,omitempty"`
+}
+
+func (t TopNQuery) Type() string {
+	return TopN.Name()
+}
+
+type TopNQueryResult TimeseriesQueryResult
 
 type GroupByQuery struct {
 	QueryType        QueryType                        `json:"queryType"`
 	DataSource       datasource.DataSource            `json:"dataSource"`
-	Granularity      granularity.Granularity          `json:"granularity"`
 	Dimensions       []dimension.Dimension            `json:"dimensions"`
-	Intervals        []string                         `json:"intervals"`
+	LimitSpec        limit.Limit                      `json:"limitSpec,omitempty"`
+	Having           having.Having                    `json:"having,omitempty"`
+	Granularity      granularity.Granularity          `json:"granularity"`
 	Filter           filter.Filter                    `json:"filter,omitempty"`
 	Aggregations     []aggregation.Aggregator         `json:"aggregations,omitempty"`
 	PostAggregations []postaggregation.PostAggregator `json:"postAggregations,omitempty"`
+	Intervals        []string                         `json:"intervals"`
+	SubtotalsSpec    [][]string                       `json:"subtotalsSpec,omitempty"`
 	Context          map[string]interface{}           `json:"context,omitempty"`
 }
 
@@ -42,7 +77,7 @@ func (g GroupByQuery) Type() string {
 	return GroupBy.Name()
 }
 
-type GroupByResult struct {
+type GroupByQueryResult struct {
 	Version   string                 `json:"version"`
 	Timestamp string                 `json:"timestamp"`
 	Event     map[string]interface{} `json:"event"`
@@ -51,11 +86,12 @@ type GroupByResult struct {
 type ScanQuery struct {
 	QueryType    QueryType             `json:"queryType"`
 	DataSource   datasource.DataSource `json:"dataSource"`
+	Intervals    []string              `json:"intervals"`
 	ResultFormat ResultFormat          `json:"resultFormat,omitempty"`
 	Columns      []string              `json:"columns"`
-	Intervals    []string              `json:"intervals"`
 	BatchSize    int64                 `json:"batchSize,omitempty"`
 	Limit        int64                 `json:"limit,omitempty"`
+	Filter       filter.Filter         `json:"filter,omitempty"`
 }
 
 func (s ScanQuery) Type() string {
