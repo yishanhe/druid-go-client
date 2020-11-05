@@ -10,6 +10,8 @@ import (
 	"github.com/yishanhe/druid-go-client/query/components/limit"
 	"github.com/yishanhe/druid-go-client/query/components/metric"
 	"github.com/yishanhe/druid-go-client/query/components/postaggregation"
+	"github.com/yishanhe/druid-go-client/query/components/search"
+	"github.com/yishanhe/druid-go-client/query/components/sorting"
 )
 
 type Query interface {
@@ -84,14 +86,18 @@ type GroupByQueryResult struct {
 }
 
 type ScanQuery struct {
-	QueryType    QueryType             `json:"queryType"`
-	DataSource   datasource.DataSource `json:"dataSource"`
-	Intervals    []string              `json:"intervals"`
-	ResultFormat ResultFormat          `json:"resultFormat,omitempty"`
-	Columns      []string              `json:"columns"`
-	BatchSize    int64                 `json:"batchSize,omitempty"`
-	Limit        int64                 `json:"limit,omitempty"`
-	Filter       filter.Filter         `json:"filter,omitempty"`
+	QueryType    QueryType              `json:"queryType"`
+	DataSource   datasource.DataSource  `json:"dataSource"`
+	Intervals    []string               `json:"intervals"`
+	ResultFormat ResultFormat           `json:"resultFormat,omitempty"`
+	Filter       filter.Filter          `json:"filter,omitempty"`
+	Columns      []string               `json:"columns,omitempty"`
+	BatchSize    int64                  `json:"batchSize,omitempty"`
+	Limit        int64                  `json:"limit,omitempty"`
+	Offset       int64                  `json:"offset,omitempty"`
+	Order        sorting.Direction      `json:"order,omitempty"`
+	Legacy       bool                   `json:"legacy,omitempty"`
+	Context      map[string]interface{} `json:"context,omitempty"`
 }
 
 func (s ScanQuery) Type() string {
@@ -109,3 +115,18 @@ type ScanQueryCompactedResult struct {
 	Columns   []string   `json:"columns"`
 	Events    [][]string `json:"events"`
 }
+
+type SearchQuery struct {
+	QueryType        QueryType               `json:"queryType"`
+	DataSource       datasource.DataSource   `json:"dataSource"`
+	Granularity      granularity.Granularity `json:"granularity"`
+	Filter           filter.Filter           `json:"filter,omitempty"`
+	Limit            int64                   `json:"limit,omitempty"`
+	Intervals        []string                `json:"intervals"`
+	SearchDimensions []string                `json:"searchDimensions,omitempty"`
+	Query            search.Search           `json:"query"`
+	Sort             sorting.SortingOrder    `json:"sort,omitempty"`
+	Context          map[string]interface{}  `json:"context,omitempty"`
+}
+
+type SearchQueryResult TimeseriesQueryResult

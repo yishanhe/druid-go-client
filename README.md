@@ -17,7 +17,7 @@ The interfaces are not stable yet. Please don't use it in production.
 - [ ] more query types
   - [x] timeseries
   - [x] topn
-  - [ ] search
+  - [x] search
   - [ ] timeboundary
   - [ ] segmentmetadata
   - [ ] datasourcemetadata

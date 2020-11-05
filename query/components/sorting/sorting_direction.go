@@ -5,12 +5,13 @@ import "github.com/yishanhe/druid-go-client/pkg/enum"
 type Direction int
 
 const (
-	Ascending Direction = iota
+	None Direction = iota
+	Ascending
 	Descending
 )
 
 var directionStrings = []string{
-	"ascending", "descending",
+	"none", "ascending", "descending",
 }
 
 func (d Direction) Name() string {

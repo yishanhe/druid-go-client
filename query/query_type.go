@@ -12,7 +12,7 @@ const (
 	TopN
 	GroupBy
 	Scan
-	search
+	Search
 	TimeBoundary
 	SegmentMetadata
 	DataSoureMetadata
