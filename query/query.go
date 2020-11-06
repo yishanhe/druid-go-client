@@ -2,6 +2,7 @@ package query
 
 import (
 	"github.com/yishanhe/druid-go-client/query/components/aggregation"
+	"github.com/yishanhe/druid-go-client/query/components/common"
 	"github.com/yishanhe/druid-go-client/query/components/datasource"
 	"github.com/yishanhe/druid-go-client/query/components/dimension"
 	"github.com/yishanhe/druid-go-client/query/components/filter"
@@ -11,6 +12,7 @@ import (
 	"github.com/yishanhe/druid-go-client/query/components/metric"
 	"github.com/yishanhe/druid-go-client/query/components/postaggregation"
 	"github.com/yishanhe/druid-go-client/query/components/search"
+	"github.com/yishanhe/druid-go-client/query/components/segment"
 	"github.com/yishanhe/druid-go-client/query/components/sorting"
 )
 
@@ -130,3 +132,37 @@ type SearchQuery struct {
 }
 
 type SearchQueryResult TimeseriesQueryResult
+
+type TimeBoundaryQuery struct {
+	QueryType  QueryType              `json:"queryType"`
+	DataSource datasource.DataSource  `json:"dataSource"`
+	Bound      common.Bound           `json:"bound,omitempty"`
+	Filter     filter.Filter          `json:"filter,omitempty"`
+	Context    map[string]interface{} `json:"context,omitempty"`
+}
+
+type TimeBoundaryQueryResult TimeseriesQueryResult
+
+type SegmentMetaDataQuery struct {
+	QueryType              QueryType              `json:"queryType"`
+	DataSource             datasource.DataSource  `json:"dataSource"`
+	Intervals              []string               `json:"intervals,omitempty"`
+	ToInclude              segment.Include        `json:"toInclude,omitempty"`
+	Merge                  bool                   `json:"merge"`
+	Context                map[string]interface{} `json:"context,omitempty"`
+	AnalysisTypes          []segment.AnalysisType `json:"analysisTypes,omitempty"`
+	LenientAggregatorMerge bool                   `json:"lenientAggregatorMerge"`
+}
+
+type SegmentMetaDataQueryResult struct {
+	Timestamp        string                 `json:"timestamp"`
+	Intervals        []string               `json:"intervals"`
+	Columns          map[string]interface{} `json:"columns"` // todo add type for column
+	Aggregators      map[string]interface{} `json:"aggregators,omitempty"`
+	Cardinality      interface{}            `json:"cardinality,omitempty"`
+	Minmax           interface{}            `json:"minmax,omitempty"`
+	Size             int64                  `json:"size,omitempty"`
+	TimestampSpec    interface{}            `json:"timestampSpec,omitempty"`
+	QueryGranularity interface{}            `json:"queryGranularity,omitempty"`
+	Rollup           bool                   `json:"rollup,omitempty"`
+}
