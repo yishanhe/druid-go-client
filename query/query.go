@@ -50,7 +50,7 @@ type TopNQuery struct {
 	Filter           filter.Filter                    `json:"filter,omitempty"`
 	Aggregations     []aggregation.Aggregator         `json:"aggregations,omitempty"`
 	PostAggregations []postaggregation.PostAggregator `json:"postAggregations,omitempty"`
-	Dimensions       []dimension.Dimension            `json:"dimensions"`
+	Dimension        dimension.Dimension              `json:"dimension"`
 	Threshold        int64                            `json:"threshold"`
 	Metric           metric.Metric                    `json:"metric"`
 	Context          map[string]interface{}           `json:"context,omitempty"`
@@ -91,9 +91,9 @@ type ScanQuery struct {
 	QueryType    QueryType              `json:"queryType"`
 	DataSource   datasource.DataSource  `json:"dataSource"`
 	Intervals    []string               `json:"intervals"`
-	ResultFormat ResultFormat           `json:"resultFormat,omitempty"`
+	ResultFormat ResultFormat           `json:"resultFormat"`
 	Filter       filter.Filter          `json:"filter,omitempty"`
-	Columns      []string               `json:"columns,omitempty"`
+	Columns      []string               `json:"columns"`
 	BatchSize    int64                  `json:"batchSize,omitempty"`
 	Limit        int64                  `json:"limit,omitempty"`
 	Offset       int64                  `json:"offset,omitempty"`
@@ -166,3 +166,11 @@ type SegmentMetaDataQueryResult struct {
 	QueryGranularity interface{}            `json:"queryGranularity,omitempty"`
 	Rollup           bool                   `json:"rollup,omitempty"`
 }
+
+type DatasourceMetadataQuery struct {
+	QueryType  QueryType              `json:"queryType"`
+	DataSource datasource.DataSource  `json:"dataSource"`
+	Context    map[string]interface{} `json:"context,omitempty"`
+}
+
+type DatasourceMetadataQueryResult TimeseriesQueryResult

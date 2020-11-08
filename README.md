@@ -14,13 +14,14 @@ The interfaces are not stable yet. Please don't use it in production.
   - [x] limit
   - [x] virtual columns
   - [x] having
-- [ ] more query types
+- [x] more query types
   - [x] timeseries
   - [x] topn
   - [x] search
-  - [ ] timeboundary
-  - [ ] segmentmetadata
-  - [ ] datasourcemetadata
+  - [x] timeboundary
+  - [x] segmentmetadata
+  - [x] datasourcemetadata
+- [ ] test converage
 - [ ] constructor methods to set type and default values
 
 and more.

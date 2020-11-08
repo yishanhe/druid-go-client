@@ -5,9 +5,9 @@ type Orderby interface {
 }
 
 type OrderByColumn struct {
-	Dimension      string       `json:"dimension"`
-	Direction      Direction    `json:"direction"`
-	DimensionOrder SortingOrder `json:"dimensionOrder"`
+	Dimension      string           `json:"dimension"`
+	Direction      Direction        `json:"direction"`
+	DimensionOrder SortingOrderType `json:"dimensionOrder"`
 }
 
 func (o OrderByColumn) Type() string {
